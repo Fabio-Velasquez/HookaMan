@@ -5,3 +5,5 @@ added prepare-commit msg
 commit must be longer than 5 characters
 testing above again
 wut
+
+Jira in commit msg
