@@ -1,1 +1,3 @@
 test going in w no hooks -hookaMan. 
+
+added prepare-commit msg
