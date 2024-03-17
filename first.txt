@@ -10,4 +10,3 @@ Jira in commit msg
 
 Jira id added for the dev.
 
-extra code
