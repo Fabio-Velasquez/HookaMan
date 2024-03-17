@@ -10,6 +10,3 @@ commit must be longer than 5 characters
 ahhhh
 tttt
 
-testsadsafds
-
-fuck
