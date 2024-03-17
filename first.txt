@@ -4,3 +4,5 @@ added prepare-commit msg
 
 commit must be longer than 5 characters
  another one 
+ another one
+ we da best 
