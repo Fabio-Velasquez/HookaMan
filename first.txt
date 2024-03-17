@@ -3,4 +3,3 @@ test going in w no hooks -hookaMan.
 added prepare-commit msg
 
 commit must be longer than 5 characters
-testing above again
