@@ -4,3 +4,4 @@ added prepare-commit msg
 
 commit must be longer than 5 characters
 again3
+finally fdixed 
