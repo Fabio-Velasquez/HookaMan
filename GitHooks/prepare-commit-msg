@@ -26,16 +26,15 @@ print("commit-msg: On branch '%s'" % branch)
 
 if branch.startswith('Jira-'):
     print("commit-msg: Oh hey, it's a Jira branch.")
-    result = re.match('Jira-(.*)', branch)
-    issue_number = result.group(1)
-    required_message = "Jira-%s" % issue_number
+    result = re.match(r'Jira-\d{4,6}(?!\d)', branch)
+
     save = None
     #copy exisitng message
     with open(commit_msg_filepath, 'r+', encoding="UTF-8") as f:
         saved = f.read()
     # prepend the jira Id for user and overwriting file
     with open(commit_msg_filepath, 'w', encoding="UTF-8") as f:
-        f.write("Jira-%s " % (issue_number))
+        f.write("%s" % (result))
     #append the message we copied 
     with open(commit_msg_filepath, 'a', encoding="UTF-8") as f:
         f.write(saved)
