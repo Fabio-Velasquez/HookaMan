@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+import sys, os, re
+from subprocess import check_output
+
+# Collect the parameters
+commit_msg_filepath = sys.argv[1]
+if len(sys.argv) > 2:
+    commit_type = sys.argv[2]
+else:
+    commit_type = ''
+if len(sys.argv) > 3:
+    commit_hash = sys.argv[3]
+else:
+    commit_hash = ''
+
+print("prepare-commit-msg: File: %s\nType: %s\nHash: %s" % (commit_msg_filepath, commit_type, commit_hash))
+
+# Collect the parameters
+commit_msg_filepath = sys.argv[1]
+
+# Figure out which branch we're on
+branch = check_output(['git', 'symbolic-ref', '--short', 'HEAD']).strip()
+branch = branch.decode('UTF-8')
+print("commit-msg: On branch '%s'" % branch)
+
+
+if branch.startswith('Jira-'):
+    print("commit-msg: Oh hey, it's a Jira branch.")
+    result = re.match('Jira-(.*)', branch)
+    issue_number = result.group(1)
+    required_message = "Jira-%s" % issue_number
+    save = None
+    #copy exisitng message
+    with open(commit_msg_filepath, 'r+', encoding="UTF-8") as f:
+        saved = f.read()
+    # prepend the jira Id for user and overwriting file
+    with open(commit_msg_filepath, 'w', encoding="UTF-8") as f:
+        f.write("Jira-%s " % (issue_number))
+    #append the message we copied 
+    with open(commit_msg_filepath, 'a', encoding="UTF-8") as f:
+        f.write(saved)
